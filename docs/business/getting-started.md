@@ -7,7 +7,7 @@ This guide will help you quickly get started with the WordPress Plugin Boilerpla
 Before you begin, ensure you have the following installed:
 
 - **PHP 8.2 or higher**
-- **Node.js 18 or higher**
+- **Node.js 20 or higher**
 - **Composer** (PHP package manager)
 - **Git** (for version control)
 - **Docker** (for local development environment)
@@ -21,7 +21,18 @@ git clone https://github.com/your-org/wordpress-plugin-boilerplate.git my-plugin
 cd my-plugin
 ```
 
-### 2. Install Dependencies
+### 2. Setup Node.js Version
+
+The project includes an `.nvmrc` file for consistent Node.js versioning:
+
+```bash
+# If using nvm (Node Version Manager)
+nvm use
+
+# Or install Node.js 20+ manually
+```
+
+### 3. Install Dependencies
 
 Install PHP dependencies:
 ```bash
@@ -33,7 +44,7 @@ Install Node.js dependencies:
 npm install
 ```
 
-### 3. Start Local Development Environment
+### 4. Start Local Development Environment
 
 Start the WordPress development environment:
 ```bash
@@ -45,7 +56,7 @@ This will:
 - Load your plugin automatically
 - Make it available at `http://localhost:8888`
 
-### 4. Build Assets
+### 5. Build Assets
 
 For development with hot reloading:
 ```bash

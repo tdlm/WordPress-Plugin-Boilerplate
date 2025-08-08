@@ -76,7 +76,7 @@ Comprehensive documentation is available in the `docs/` directory:
 
 * PHP 8.2 or higher
 * WordPress 6.0 or higher
-* Node.js 18 or higher (for development)
+* Node.js 20 or higher (for development)
 * Composer (for PHP dependencies)
 
 == Installation ==

@@ -13,7 +13,7 @@ This document covers development practices, workflows, and technical details for
    - `xml`
    - `zip`
 
-2. **Node.js 18+** with npm
+2. **Node.js 20+** with npm
 
 3. **Composer** for PHP dependency management
 

@@ -7,7 +7,7 @@ A modern, well-structured WordPress plugin boilerplate designed for rapid develo
 ### Prerequisites
 
 - **PHP 8.2 or higher**
-- **Node.js 18 or higher**
+- **Node.js 20 or higher**
 - **Composer** (PHP package manager)
 - **Docker** (for local development)
 
@@ -19,23 +19,31 @@ A modern, well-structured WordPress plugin boilerplate designed for rapid develo
    cd my-plugin
    ```
 
-2. **Install dependencies:**
+2. **Setup Node.js version:**
+   ```bash
+   # If using nvm (Node Version Manager)
+   nvm use
+   
+   # Or install Node.js 20+ manually
+   ```
+
+3. **Install dependencies:**
    ```bash
    composer install
    npm install
    ```
 
-3. **Start development environment:**
+4. **Start development environment:**
    ```bash
    npm run env:start
    ```
 
-4. **Build assets:**
+5. **Build assets:**
    ```bash
    npm run dev
    ```
 
-5. **Access your plugin at:** `http://localhost:8888`
+6. **Access your plugin at:** `http://localhost:8888`
 
 ## 🏗️ Architecture
 
@@ -268,7 +276,7 @@ register_rest_route('your-plugin/v1', '/data', [
 - **MySQL**: 5.7 or higher (or MariaDB 10.3 or higher)
 
 ### Development Requirements
-- **Node.js**: 18 or higher
+- **Node.js**: 20 or higher
 - **Composer**: Latest version
 - **Docker**: For local development environment
 
