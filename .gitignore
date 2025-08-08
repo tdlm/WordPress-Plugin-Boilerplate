@@ -5,11 +5,16 @@ vendor/
 # Build outputs
 dist/
 build/
+assets/css/*.map
+assets/js/*.map
 
 # Environment files
 .env
 .env.local
 .env.*.local
+.env.development
+.env.test
+.env.production
 
 # IDE files
 .vscode/
@@ -17,6 +22,9 @@ build/
 *.swp
 *.swo
 *~
+.project
+.settings/
+.classpath
 
 # OS generated files
 .DS_Store
@@ -26,6 +34,7 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # WordPress specific
 wp-config.php
@@ -39,6 +48,8 @@ wp-content/uploads/
 wp-content/mu-plugins/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
+wp-content/debug.log
+wp-content/error_log
 
 # Logs
 *.log
@@ -46,6 +57,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+debug.log
+error_log
+access.log
 
 # Runtime data
 pids
@@ -56,18 +70,27 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 *.lcov
-
-# nyc test coverage
 .nyc_output
+coverage.xml
+*.coverage
+
+# Test files
+tests/coverage/
+.phpunit.result.cache
+.phpunit.cache/
+test-results/
+junit.xml
 
 # Dependency directories
 jspm_packages/
 
 # Optional npm cache directory
 .npm
+.npmrc
 
 # Optional eslint cache
 .eslintcache
+.eslintignore
 
 # Microbundle cache
 .rpt2_cache/
@@ -80,9 +103,11 @@ jspm_packages/
 
 # Output of 'npm pack'
 *.tgz
+*.tar.gz
 
 # Yarn Integrity file
 .yarn-integrity
+.yarnrc
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -106,10 +131,14 @@ public
 # Temporary folders
 tmp/
 temp/
+.tmp/
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 .idea
 *.suo
 *.ntvs*
@@ -119,14 +148,13 @@ temp/
 
 # WordPress development environment
 .wp-env/
+wp-env.override.json
 
 # Plugin specific
 *.zip
 *.tar.gz
-
-# Test files
-tests/coverage/
-.phpunit.result.cache
+plugin-name.zip
+plugin-name.tar.gz
 
 # Composer
 composer.phar
@@ -135,3 +163,383 @@ composer.lock
 # Local development
 local-config.php
 wp-cli.local.yml
+wp-cli.yml
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Database dumps
+*.sql
+*.sql.gz
+*.sql.bz2
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# CI/CD
+.github/workflows/*.log
+.gitlab-ci.yml.local
+.circleci/config.local.yml
+
+# Performance monitoring
+.newrelic
+.newrelic.yml
+
+# Security
+.secrets
+secrets.json
+secrets.yml
+
+# Local configuration overrides
+config.local.php
+wp-config-local.php
+
+# Asset optimization
+assets/css/*.min.css
+assets/js/*.min.js
+assets/css/*.min.css.map
+assets/js/*.min.js.map
+
+# WordPress core files (if accidentally included)
+wp-admin/
+wp-includes/
+wp-*.php
+xmlrpc.php
+index.php
+license.txt
+readme.html
+
+# Plugin deployment artifacts
+deploy/
+release/
+staging/
+
+# Documentation build
+docs/_build/
+docs/.doctrees/
+
+# Sphinx documentation
+docs/build/
+
+# Jekyll site generation
+_site/
+.jekyll-cache/
+
+# Hugo site generation
+public/
+resources/
+
+# Metalsmith site generation
+build/
+
+# Local WordPress installation
+wordpress/
+wp/
+
+# Backup and sync tools
+rsync-exclude.txt
+unison.log
+
+# Development tools
+.phpstorm.meta.php
+_ide_helper.php
+.php_cs.cache
+
+# WordPress multisite
+wp-content/blogs.dir/
+wp-content/uploads/sites/
+
+# WordPress debug files
+wp-content/debug.log
+wp-content/error_log
+wp-content/php_errors.log
+
+# WordPress cache plugins
+wp-content/cache/
+wp-content/w3tc-config/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/wp-cache.php
+
+# WordPress security plugins
+wp-content/security.php
+wp-content/security-config.php
+
+# WordPress backup plugins
+wp-content/backup-db/
+wp-content/backups/
+wp-content/backup/
+
+# WordPress optimization plugins
+wp-content/autoptimize/
+wp-content/ao_ccss/
+wp-content/cache/autoptimize/
+
+# WordPress SEO plugins
+wp-content/yoast-seo/
+wp-content/wordpress-seo/
+
+# WordPress e-commerce plugins
+wp-content/uploads/wc-logs/
+wp-content/uploads/woocommerce_uploads/
+
+# WordPress form plugins
+wp-content/uploads/contact-form-7/
+wp-content/uploads/gravity_forms/
+
+# WordPress media optimization
+wp-content/uploads/ewww/
+wp-content/uploads/smush/
+
+# WordPress maintenance mode
+.maintenance
+
+# WordPress cron
+wp-cron.php
+
+# WordPress database
+wp-content/db.php
+
+# WordPress object cache
+wp-content/object-cache.php
+
+# WordPress advanced cache
+wp-content/advanced-cache.php
+
+# WordPress drop-ins
+wp-content/db.php
+wp-content/object-cache.php
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/sunrise.php
+wp-content/blog-header.php
+wp-content/blog-footer.php
+wp-content/db-error.php
+
+# WordPress custom uploads
+wp-content/uploads/custom/
+wp-content/uploads/private/
+
+# WordPress custom themes (if not part of the plugin)
+wp-content/themes/
+
+# WordPress custom plugins (if not part of the plugin)
+wp-content/plugins/
+
+# WordPress custom mu-plugins (if not part of the plugin)
+wp-content/mu-plugins/
+
+# WordPress custom languages
+wp-content/languages/
+
+# WordPress custom database tables
+wp-content/database/
+
+# WordPress custom cache
+wp-content/cache/
+
+# WordPress custom logs
+wp-content/logs/
+
+# WordPress custom temp
+wp-content/temp/
+
+# WordPress custom backup
+wp-content/backup/
+
+# WordPress custom uploads
+wp-content/uploads/
+
+# WordPress custom wp-config
+wp-config-*.php
+
+# WordPress custom .htaccess
+.htaccess
+
+# WordPress custom robots.txt
+robots.txt
+
+# WordPress custom sitemap
+sitemap.xml
+sitemap.xml.gz
+
+# WordPress custom favicon
+favicon.ico
+
+# WordPress custom apple-touch-icon
+apple-touch-icon.png
+
+# WordPress custom manifest
+manifest.json
+
+# WordPress custom service worker
+sw.js
+
+# WordPress custom offline page
+offline.html
+
+# WordPress custom 404 page
+404.html
+
+# WordPress custom maintenance page
+maintenance.html
+
+# WordPress custom error pages
+error.html
+error-*.html
+
+# WordPress custom redirects
+.htaccess
+redirects.txt
+
+# WordPress custom security
+security.php
+security-config.php
+security.log
+
+# WordPress custom performance
+performance.php
+performance-config.php
+performance.log
+
+# WordPress custom analytics
+analytics.php
+analytics-config.php
+analytics.log
+
+# WordPress custom monitoring
+monitoring.php
+monitoring-config.php
+monitoring.log
+
+# WordPress custom backup
+backup.php
+backup-config.php
+backup.log
+
+# WordPress custom sync
+sync.php
+sync-config.php
+sync.log
+
+# WordPress custom migration
+migration.php
+migration-config.php
+migration.log
+
+# WordPress custom deployment
+deployment.php
+deployment-config.php
+deployment.log
+
+# WordPress custom staging
+staging.php
+staging-config.php
+staging.log
+
+# WordPress custom production
+production.php
+production-config.php
+production.log
+
+# WordPress custom development
+development.php
+development-config.php
+development.log
+
+# WordPress custom testing
+testing.php
+testing-config.php
+testing.log
+
+# WordPress custom local
+local.php
+local-config.php
+local.log
+
+# WordPress custom remote
+remote.php
+remote-config.php
+remote.log
+
+# WordPress custom sync
+sync.php
+sync-config.php
+sync.log
+
+# WordPress custom backup
+backup.php
+backup-config.php
+backup.log
+
+# WordPress custom restore
+restore.php
+restore-config.php
+restore.log
+
+# WordPress custom import
+import.php
+import-config.php
+import.log
+
+# WordPress custom export
+export.php
+export-config.php
+export.log
+
+# WordPress custom migration
+migration.php
+migration-config.php
+migration.log
+
+# WordPress custom deployment
+deployment.php
+deployment-config.php
+deployment.log
+
+# WordPress custom staging
+staging.php
+staging-config.php
+staging.log
+
+# WordPress custom production
+production.php
+production-config.php
+production.log
+
+# WordPress custom development
+development.php
+development-config.php
+development.log
+
+# WordPress custom testing
+testing.php
+testing-config.php
+testing.log
+
+# WordPress custom local
+local.php
+local-config.php
+local.log
+
+# WordPress custom remote
+remote.php
+remote-config.php
+remote.log
