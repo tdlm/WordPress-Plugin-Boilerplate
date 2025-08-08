@@ -1,0 +1,478 @@
+/**
+ * WordPress Plugin Boilerplate - Admin Styles
+ *
+ * @package WordPressPluginBoilerplate
+ */
+
+.plugin-boilerplate-admin-header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.plugin-boilerplate-admin-header-title {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0;
+    padding: 9px 0 4px 0;
+    line-height: 1.3;
+    color: #23282d;
+}
+
+.plugin-boilerplate-admin-header-description {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.plugin-boilerplate-admin-nav {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.plugin-boilerplate-admin-nav-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plugin-boilerplate-admin-nav-tabs li {
+    margin: 0;
+}
+
+.plugin-boilerplate-admin-nav-tab {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.plugin-boilerplate-admin-nav-tab:hover {
+    color: #0073aa;
+    background-color: #f9f9f9;
+}
+
+.plugin-boilerplate-admin-nav-tab.active {
+    color: #0073aa;
+    border-bottom-color: #0073aa;
+    background-color: #fff;
+}
+
+.plugin-boilerplate-admin-content {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+.plugin-boilerplate-admin-content-section {
+    margin-bottom: 30px;
+}
+
+.plugin-boilerplate-admin-content-section:last-child {
+    margin-bottom: 0;
+}
+
+.plugin-boilerplate-admin-form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.plugin-boilerplate-admin-form-row:last-child {
+    border-bottom: none;
+}
+
+.plugin-boilerplate-admin-form-label {
+    flex: 0 0 200px;
+    font-weight: 500;
+    color: #333;
+    margin-right: 20px;
+}
+
+.plugin-boilerplate-admin-form-field {
+    flex: 1;
+}
+
+.plugin-boilerplate-admin-form-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: border-color 0.2s ease;
+}
+
+.plugin-boilerplate-admin-form-input:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px #0073aa;
+}
+
+.plugin-boilerplate-admin-form-input--error {
+    border-color: #dc3232;
+}
+
+.plugin-boilerplate-admin-form-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.plugin-boilerplate-admin-form-select {
+    cursor: pointer;
+}
+
+.plugin-boilerplate-admin-form-checkbox {
+    margin-right: 8px;
+}
+
+.plugin-boilerplate-admin-form-radio {
+    margin-right: 8px;
+}
+
+.plugin-boilerplate-admin-form-help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.plugin-boilerplate-admin-form-error {
+    color: #dc3232;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.plugin-boilerplate-admin-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #0073aa;
+    color: white;
+    text-decoration: none;
+    border: 1px solid #005a87;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.plugin-boilerplate-admin-button:hover {
+    background-color: #005a87;
+    color: white;
+    text-decoration: none;
+    border-color: #004a6f;
+}
+
+.plugin-boilerplate-admin-button:focus {
+    outline: 2px solid #0073aa;
+    outline-offset: 2px;
+}
+
+.plugin-boilerplate-admin-button:active {
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.plugin-boilerplate-admin-button--secondary {
+    background-color: #005a87;
+    border-color: #004a6f;
+}
+
+.plugin-boilerplate-admin-button--secondary:hover {
+    background-color: #004a6f;
+    border-color: #003a5f;
+}
+
+.plugin-boilerplate-admin-button--success {
+    background-color: #46b450;
+    border-color: #3d9c46;
+}
+
+.plugin-boilerplate-admin-button--success:hover {
+    background-color: #3d9c46;
+    border-color: #348a3d;
+}
+
+.plugin-boilerplate-admin-button--error {
+    background-color: #dc3232;
+    border-color: #c02828;
+}
+
+.plugin-boilerplate-admin-button--error:hover {
+    background-color: #c02828;
+    border-color: #a02424;
+}
+
+.plugin-boilerplate-admin-button--warning {
+    background-color: #ffb900;
+    border-color: #e6a700;
+}
+
+.plugin-boilerplate-admin-button--warning:hover {
+    background-color: #e6a700;
+    border-color: #cc9500;
+}
+
+.plugin-boilerplate-admin-button--info {
+    background-color: #00a0d2;
+    border-color: #0088b3;
+}
+
+.plugin-boilerplate-admin-button--info:hover {
+    background-color: #0088b3;
+    border-color: #007099;
+}
+
+.plugin-boilerplate-admin-button--small {
+    padding: 4px 8px;
+    font-size: 11px;
+}
+
+.plugin-boilerplate-admin-button--large {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.plugin-boilerplate-admin-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.plugin-boilerplate-admin-button:disabled:hover {
+    background-color: #0073aa;
+}
+
+.plugin-boilerplate-admin-message {
+    padding: 10px 15px;
+    margin: 15px 0;
+    background-color: #f0f8f0;
+    border-left: 4px solid #46b450;
+    color: #2d5a2d;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.plugin-boilerplate-admin-message--success {
+    background-color: #f0f8f0;
+    border-left-color: #46b450;
+    color: #2d5a2d;
+}
+
+.plugin-boilerplate-admin-message--error {
+    background-color: #fdf0f0;
+    border-left-color: #dc3232;
+    color: #8a1a1a;
+}
+
+.plugin-boilerplate-admin-message--warning {
+    background-color: #fffdf0;
+    border-left-color: #ffb900;
+    color: #8a6d00;
+}
+
+.plugin-boilerplate-admin-message--info {
+    background-color: #f0f8ff;
+    border-left-color: #00a0d2;
+    color: #006b8a;
+}
+
+.plugin-boilerplate-admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.plugin-boilerplate-admin-table th,
+.plugin-boilerplate-admin-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.plugin-boilerplate-admin-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #333;
+}
+
+.plugin-boilerplate-admin-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.plugin-boilerplate-admin-table--striped tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.plugin-boilerplate-admin-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.plugin-boilerplate-admin-card-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.plugin-boilerplate-admin-card-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.plugin-boilerplate-admin-card-body {
+    color: #666;
+    line-height: 1.6;
+}
+
+.plugin-boilerplate-admin-card-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.plugin-boilerplate-admin-tabs-nav {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.plugin-boilerplate-admin-tabs-nav .plugin-boilerplate-tab-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.plugin-boilerplate-admin-tabs-nav .plugin-boilerplate-tab-link:hover {
+    color: #0073aa;
+    background-color: #f9f9f9;
+}
+
+.plugin-boilerplate-admin-tabs-nav .plugin-boilerplate-tab-link.active {
+    color: #0073aa;
+    border-bottom-color: #0073aa;
+    background-color: #fff;
+}
+
+.plugin-boilerplate-admin-tabs-content .plugin-boilerplate-tab-panel {
+    display: none;
+}
+
+.plugin-boilerplate-admin-tabs-content .plugin-boilerplate-tab-panel.active {
+    display: block;
+}
+
+.plugin-boilerplate-admin-sidebar {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.plugin-boilerplate-admin-sidebar h3 {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.plugin-boilerplate-admin-sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plugin-boilerplate-admin-sidebar ul li {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.plugin-boilerplate-admin-sidebar ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.wp-admin .plugin-boilerplate-admin-header {
+    margin: 0 0 20px 0;
+}
+
+.wp-admin .plugin-boilerplate-admin-content {
+    margin: 20px 0;
+}
+
+@media (max-width: 782px) {
+    .plugin-boilerplate-admin-form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .plugin-boilerplate-admin-form-label {
+        flex: none;
+        width: 100%;
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+
+    .plugin-boilerplate-admin-form-field {
+        flex: none;
+        width: 100%;
+    }
+
+    .plugin-boilerplate-admin-form-input {
+        max-width: none;
+    }
+
+    .plugin-boilerplate-admin-nav-tabs {
+        flex-direction: column;
+    }
+
+    .plugin-boilerplate-admin-nav-tab {
+        border-bottom: 1px solid #ddd;
+        border-left: 2px solid transparent;
+    }
+
+    .plugin-boilerplate-admin-nav-tab.active {
+        border-bottom-color: #ddd;
+        border-left-color: #0073aa;
+    }
+
+    .plugin-boilerplate-admin-tabs-nav {
+        flex-direction: column;
+    }
+
+    .plugin-boilerplate-admin-tabs-nav .plugin-boilerplate-tab-link {
+        border-bottom: 1px solid #ddd;
+        border-left: 2px solid transparent;
+    }
+
+    .plugin-boilerplate-admin-tabs-nav .plugin-boilerplate-tab-link.active {
+        border-bottom-color: #ddd;
+        border-left-color: #0073aa;
+    }
+}

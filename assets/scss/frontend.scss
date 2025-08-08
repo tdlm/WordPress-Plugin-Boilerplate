@@ -1,0 +1,356 @@
+/**
+ * WordPress Plugin Boilerplate - Frontend Styles
+ *
+ * @package WordPressPluginBoilerplate
+ */
+
+// Variables
+$plugin-prefix: 'plugin-boilerplate';
+$primary-color: #0073aa;
+$secondary-color: #005a87;
+$success-color: #46b450;
+$error-color: #dc3232;
+$warning-color: #ffb900;
+$info-color: #00a0d2;
+
+// Mixins
+@mixin plugin-button($bg-color: $primary-color, $text-color: white) {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: $bg-color;
+    color: $text-color;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.4;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+        color: $text-color;
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: 2px solid $bg-color;
+        outline-offset: 2px;
+    }
+}
+
+@mixin plugin-message($bg-color, $border-color, $text-color) {
+    padding: 12px 16px;
+    margin: 10px 0;
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    color: $text-color;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+// Base styles
+.#{$plugin-prefix} {
+    &-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    &-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    &-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $primary-color;
+    }
+
+    &-subtitle {
+        font-size: 18px;
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    &-description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+}
+
+// Buttons
+.#{$plugin-prefix} {
+    &-button {
+        @include plugin-button();
+
+        &--secondary {
+            @include plugin-button($secondary-color);
+        }
+
+        &--success {
+            @include plugin-button($success-color);
+        }
+
+        &--error {
+            @include plugin-button($error-color);
+        }
+
+        &--warning {
+            @include plugin-button($warning-color);
+        }
+
+        &--info {
+            @include plugin-button($info-color);
+        }
+
+        &--small {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        &--large {
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+
+            &:hover {
+                background-color: $primary-color;
+            }
+        }
+    }
+}
+
+// Forms
+.#{$plugin-prefix} {
+    &-form {
+        &-group {
+            margin-bottom: 20px;
+        }
+
+        &-label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        &-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.4;
+            transition: border-color 0.2s ease;
+
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+            }
+
+            &--error {
+                border-color: $error-color;
+            }
+        }
+
+        &-textarea {
+            @extend .#{$plugin-prefix}-form-input;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        &-select {
+            @extend .#{$plugin-prefix}-form-input;
+            cursor: pointer;
+        }
+
+        &-checkbox {
+            margin-right: 8px;
+        }
+
+        &-radio {
+            margin-right: 8px;
+        }
+
+        &-help {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        &-error {
+            color: $error-color;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    }
+}
+
+// Messages
+.#{$plugin-prefix} {
+    &-message {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        min-width: 300px;
+        max-width: 400px;
+        padding: 15px 20px;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideInRight 0.3s ease;
+
+        &--success {
+            @include plugin-message(
+                lighten($success-color, 45%),
+                $success-color,
+                darken($success-color, 20%)
+            );
+        }
+
+        &--error {
+            @include plugin-message(
+                lighten($error-color, 45%),
+                $error-color,
+                darken($error-color, 20%)
+            );
+        }
+
+        &--warning {
+            @include plugin-message(
+                lighten($warning-color, 45%),
+                $warning-color,
+                darken($warning-color, 20%)
+            );
+        }
+
+        &--info {
+            @include plugin-message(
+                lighten($info-color, 45%),
+                $info-color,
+                darken($info-color, 20%)
+            );
+        }
+    }
+}
+
+// Grid system
+.#{$plugin-prefix} {
+    &-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
+
+    &-col {
+        padding: 0 10px;
+        margin-bottom: 20px;
+
+        &--1 { flex: 0 0 8.333333%; }
+        &--2 { flex: 0 0 16.666667%; }
+        &--3 { flex: 0 0 25%; }
+        &--4 { flex: 0 0 33.333333%; }
+        &--6 { flex: 0 0 50%; }
+        &--8 { flex: 0 0 66.666667%; }
+        &--9 { flex: 0 0 75%; }
+        &--12 { flex: 0 0 100%; }
+    }
+}
+
+// Utilities
+.#{$plugin-prefix} {
+    &-text {
+        &--center { text-align: center; }
+        &--left { text-align: left; }
+        &--right { text-align: right; }
+        &--primary { color: $primary-color; }
+        &--success { color: $success-color; }
+        &--error { color: $error-color; }
+        &--warning { color: $warning-color; }
+        &--info { color: $info-color; }
+    }
+
+    &-margin {
+        &--top { margin-top: 20px; }
+        &--bottom { margin-bottom: 20px; }
+        &--left { margin-left: 20px; }
+        &--right { margin-right: 20px; }
+    }
+
+    &-padding {
+        &--top { padding-top: 20px; }
+        &--bottom { padding-bottom: 20px; }
+        &--left { padding-left: 20px; }
+        &--right { padding-right: 20px; }
+    }
+
+    &-hidden {
+        display: none !important;
+    }
+
+    &-visible {
+        display: block !important;
+    }
+}
+
+// Animations
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .#{$plugin-prefix} {
+        &-container {
+            padding: 10px;
+        }
+
+        &-section {
+            padding: 15px;
+        }
+
+        &-col {
+            flex: 0 0 100% !important;
+        }
+
+        &-message {
+            min-width: 250px;
+            max-width: 300px;
+            right: 10px;
+            left: 10px;
+        }
+    }
+}

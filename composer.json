@@ -1,0 +1,44 @@
+{
+    "name": "wordpress-plugin-boilerplate/wordpress-plugin-boilerplate",
+    "description": "A modern WordPress plugin boilerplate for rapid development",
+    "type": "wordpress-plugin",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "WordPress Plugin Boilerplate",
+            "email": "info@wordpress-plugin-boilerplate.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2",
+        "great-scott-plugins/wordpress-plugin": "^1.0.6"
+    },
+    "require-dev": {
+        "wordpress/env": "^8.0",
+        "wordpress/scripts": "^27.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WordPressPluginBoilerplate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WordPressPluginBoilerplate\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
+        "phpcs": "phpcs --standard=WordPress src/",
+        "phpcbf": "phpcbf --standard=WordPress src/",
+        "build": "npm run build",
+        "dev": "npm run dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
