@@ -12,21 +12,35 @@ use GreatScottPlugins\WordPressPlugin\Plugin as BasePlugin;
 class Plugin extends BasePlugin {
 
     /**
-     * Initialize WordPress hooks
+     * Admin component instance
+     *
+     * @var Admin\Admin|null
      */
-    protected function init_hooks(): void {
-        add_action( 'init', [ $this, 'init' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
-    }
+    private $admin = null;
+
+    /**
+     * Frontend component instance
+     *
+     * @var Frontend\Frontend|null
+     */
+    private $frontend = null;
+
+    /**
+     * API component instance
+     *
+     * @var Api\Api|null
+     */
+    private $api = null;
 
     /**
      * Initialize the plugin
+     *
+     * @action init
      */
     public function init(): void {
         // Load text domain for translations
         load_plugin_textdomain( 'wordpress-plugin-boilerplate', false, dirname( plugin_basename( WP_PLUGIN_BOILERPLATE_PLUGIN_FILE ) ) . '/languages' );
-        
+
         // Initialize components
         $this->init_components();
     }
@@ -37,18 +51,20 @@ class Plugin extends BasePlugin {
     private function init_components(): void {
         // Initialize admin functionality
         if ( is_admin() ) {
-            new Admin\Admin();
+            $this->admin = Admin\Admin::instance();
         }
 
         // Initialize frontend functionality
-        new Frontend\Frontend();
+        $this->frontend = Frontend\Frontend::instance();
 
         // Initialize API endpoints
-        new Api\Api();
+        $this->api = Api\Api::instance();
     }
 
     /**
      * Enqueue frontend scripts and styles
+     *
+     * @action wp_enqueue_scripts
      */
     public function enqueue_scripts(): void {
         wp_enqueue_script(
@@ -79,6 +95,8 @@ class Plugin extends BasePlugin {
 
     /**
      * Enqueue admin scripts and styles
+     *
+     * @action admin_enqueue_scripts
      */
     public function enqueue_admin_scripts(): void {
         wp_enqueue_script(

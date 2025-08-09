@@ -2,23 +2,21 @@
 
 namespace WordPressPluginBoilerplate\Admin;
 
+use GreatScottPlugins\WordPressPlugin\Hooks\ActionDecoratorHooks;
+use GreatScottPlugins\WordPressPlugin\Singleton;
+
 /**
  * Admin functionality
  *
  * @package WordPressPluginBoilerplate
  */
-class Admin {
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-        add_action( 'admin_init', [ $this, 'init_settings' ] );
-    }
+class Admin extends Singleton {
+    use ActionDecoratorHooks;
 
     /**
      * Add admin menu
+     *
+     * @action admin_menu
      */
     public function add_admin_menu(): void {
         add_menu_page(
@@ -34,6 +32,8 @@ class Admin {
 
     /**
      * Initialize settings
+     *
+     * @action admin_init
      */
     public function init_settings(): void {
         register_setting(

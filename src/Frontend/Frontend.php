@@ -2,24 +2,21 @@
 
 namespace WordPressPluginBoilerplate\Frontend;
 
+use GreatScottPlugins\WordPressPlugin\Hooks\ActionDecoratorHooks;
+use GreatScottPlugins\WordPressPlugin\Singleton;
+
 /**
  * Frontend functionality
  *
  * @package WordPressPluginBoilerplate
  */
-class Frontend {
-
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        add_action( 'wp_footer', [ $this, 'add_footer_content' ] );
-        add_action( 'wp_ajax_plugin_boilerplate_action', [ $this, 'handle_ajax_action' ] );
-        add_action( 'wp_ajax_nopriv_plugin_boilerplate_action', [ $this, 'handle_ajax_action' ] );
-    }
+class Frontend extends Singleton {
+    use ActionDecoratorHooks;
 
     /**
      * Add content to footer
+     *
+     * @action wp_footer
      */
     public function add_footer_content(): void {
         // Example: Add a simple message to the footer
@@ -32,6 +29,8 @@ class Frontend {
 
     /**
      * Handle AJAX action
+     *
+     * @ajax plugin_boilerplate_action
      */
     public function handle_ajax_action(): void {
         // Verify nonce

@@ -2,43 +2,40 @@
 
 namespace WordPressPluginBoilerplate\Api;
 
+use GreatScottPlugins\WordPressPlugin\Hooks\ActionDecoratorHooks;
+use GreatScottPlugins\WordPressPlugin\Hooks\ApiDecoratorHooks;
+use GreatScottPlugins\WordPressPlugin\Singleton;
+
 /**
  * REST API functionality
  *
+ * @api-namespace wordpress-plugin-boilerplate
+ * @api-version 1
+ *
  * @package WordPressPluginBoilerplate
  */
-class Api {
+class Api extends Singleton {
+    use ActionDecoratorHooks;
+    use ApiDecoratorHooks;
 
     /**
-     * Constructor
+     * Init.
      */
-    public function __construct() {
-        add_action( 'rest_api_init', [ $this, 'register_routes' ] );
-    }
-
-    /**
-     * Register REST API routes
-     */
-    public function register_routes(): void {
-        register_rest_route(
-            'wordpress-plugin-boilerplate/v1',
-            '/example',
-            [
-                'methods'             => 'GET',
-                'callback'            => [ $this, 'get_example_data' ],
-                'permission_callback' => [ $this, 'get_permission' ],
-            ]
-        );
-
-        register_rest_route(
-            'wordpress-plugin-boilerplate/v1',
-            '/example',
-            [
-                'methods'             => 'POST',
-                'callback'            => [ $this, 'create_example_data' ],
-                'permission_callback' => [ $this, 'post_permission' ],
-            ]
-        );
+    public static function init() {
+        self::setApiRoutes( [
+            '/example' => [
+                [
+                    'methods'             => 'GET',
+                    'callback'            => [ self::instance(), 'get_example_data' ],
+                    'permission_callback' => [ self::instance(), 'get_permission' ],
+                ],
+                [
+                    'methods'             => 'POST',
+                    'callback'            => [ self::instance(), 'create_example_data' ],
+                    'permission_callback' => [ self::instance(), 'post_permission' ],
+                ],
+            ],
+        ] );
     }
 
     /**
