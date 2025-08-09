@@ -9,7 +9,8 @@ use GreatScottPlugins\WordPressPlugin\Plugin as BasePlugin;
  *
  * @package WordPressPluginBoilerplate
  */
-class Plugin extends BasePlugin {
+class Plugin extends BasePlugin
+{
 
     /**
      * Admin component instance
@@ -51,23 +52,22 @@ class Plugin extends BasePlugin {
      *
      * @action init
      */
-    public function init(): void {
+    public function init(): void
+    {
         // Load text domain for translations
-        \load_plugin_textdomain( 'wordpress-plugin-boilerplate', false, dirname( \plugin_basename( WP_PLUGIN_BOILERPLATE_PLUGIN_FILE ) ) . '/languages' );
-
-        // Auto-register assets from build directory
-        $this->register_assets();
+        \load_plugin_textdomain('wordpress-plugin-boilerplate', false, dirname(\plugin_basename(WP_PLUGIN_BOILERPLATE_PLUGIN_FILE)) . '/languages');
 
         // Initialize components
-        $this->init_components();
+        $this->initComponents();
     }
 
     /**
      * Initialize plugin components
      */
-    private function init_components(): void {
+    private function initComponents(): void
+    {
         // Initialize admin functionality
-        if ( \is_admin() ) {
+        if (true === \is_admin()) {
             $this->admin = Admin\Admin::instance();
         }
 
@@ -81,16 +81,17 @@ class Plugin extends BasePlugin {
     /**
      * Enqueue frontend scripts and styles
      *
-     * @action wp_enqueue_scripts
+     * @action wp_enqueue_scripts, 11
      */
-    public function enqueue_scripts(): void {
-        // Enqueue default base assets if present
-        $this->enqueue_script( 'index' );
-        $this->enqueue_style( 'index' );
+    public function enqueueScripts(): void
+    {
+        // Enqueue frontend base assets if present
+        $this->enqueueScript('wordpress-plugin-boilerplate/frontend');
+        $this->enqueueStyle('wordpress-plugin-boilerplate/frontend');
 
-        // Localize script for AJAX when the 'index' script exists
-        $handle = $this->script_handles['index'] ?? null;
-        if ( $handle === null ) {
+        // Localize script for AJAX when the 'frontend' script exists
+        $handle = $this->scriptHandles['frontend'] ?? null;
+        if ($handle === null) {
             return;
         }
 
@@ -98,8 +99,8 @@ class Plugin extends BasePlugin {
             $handle,
             'wpPluginBoilerplate',
             [
-                'ajaxUrl' => \admin_url( 'admin-ajax.php' ),
-                'nonce'   => \wp_create_nonce( 'wp_plugin_boilerplate_nonce' ),
+                'ajaxUrl' => \admin_url('admin-ajax.php'),
+                'nonce' => \wp_create_nonce('wp_plugin_boilerplate_nonce'),
             ]
         );
     }
@@ -109,170 +110,136 @@ class Plugin extends BasePlugin {
      *
      * @action admin_enqueue_scripts
      */
-    public function enqueue_admin_scripts(): void {
-        // Enqueue default base assets if present
-        $this->enqueue_script( 'index' );
-        $this->enqueue_style( 'index' );
+    public function enqueueAdminScripts(): void
+    {
+        // Enqueue admin base assets if present
+        $this->enqueueScript('wordpress-plugin-boilerplate/admin');
+        $this->enqueueStyle('wordpress-plugin-boilerplate/admin');
     }
 
+  
     /**
-     * Auto-register all JS and CSS in the build directory.
-     */
-    private function register_assets(): void {
-        $build_dir = WP_PLUGIN_BOILERPLATE_PLUGIN_DIR . 'build/';
-        $build_url = WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'build/';
-
-        if ( ! is_dir( $build_dir ) ) {
-            return;
-        }
-
-        // Register scripts
-        $js_files = glob( $build_dir . '*.js' ) ?: [];
-        foreach ( $js_files as $js_path ) {
-            $base   = basename( $js_path, '.js' );
-            $handle = $this->build_handle( $base, 'script' );
-            $src    = $build_url . $base . '.js';
-
-            [ $deps, $ver ] = $this->get_asset_meta( $build_dir, $base );
-            if ( $ver === null ) {
-                $mtime = @filemtime( $js_path );
-                $ver   = is_int( $mtime ) ? (string) $mtime : WP_PLUGIN_BOILERPLATE_VERSION;
-            }
-
-            \wp_register_script( $handle, $src, $deps, $ver, true );
-            $this->script_handles[ $base ] = $handle;
-        }
-
-        // Register styles
-        $css_files = glob( $build_dir . '*.css' ) ?: [];
-        foreach ( $css_files as $css_path ) {
-            $base   = basename( $css_path, '.css' );
-            $handle = $this->build_handle( $base, 'style' );
-            $src    = $build_url . $base . '.css';
-
-            [ , $ver ] = $this->get_asset_meta( $build_dir, $base );
-            if ( $ver === null ) {
-                $mtime = @filemtime( $css_path );
-                $ver   = is_int( $mtime ) ? (string) $mtime : WP_PLUGIN_BOILERPLATE_VERSION;
-            }
-
-            \wp_register_style( $handle, $src, [], $ver );
-            $this->style_handles[ $base ] = $handle;
-        }
-    }
-
-    /**
-     * Helper: enqueue a registered script by base filename (without extension).
+     * Register assets.
      *
-     * @param string $base Base filename without extension (e.g. 'index').
-     * @param array<string> $deps_override Optional dependency override.
-     * @param bool $in_footer Whether to load in the footer.
+     * @action init
      */
-    public function enqueue_script( string $base, array $deps_override = [], bool $in_footer = true ): void {
-        $handle = $this->script_handles[ $base ] ?? null;
+    public function registerAssets()
+    {
+        $asset_uri = \trailingslashit(WP_PLUGIN_BOILERPLATE_PLUGIN_URL) . 'assets/build/';
+        $asset_root = \trailingslashit(WP_PLUGIN_BOILERPLATE_PLUGIN_DIR) . 'assets/build/';
+        $asset_files = glob($asset_root . '*.asset.php');
 
-        if ( $handle === null ) {
-            // Attempt late registration if file was added after init.
-            $this->register_assets();
-            $handle = $this->script_handles[ $base ] ?? null;
-            if ( $handle === null ) {
-                return;
-            }
+        // Enqueue webpack loader.js, if it exists.
+        if (true === is_readable($asset_root . 'runtime.js')) {
+            \wp_enqueue_script(
+                'wordpress-plugin-boilerplate/runtime',
+                $asset_uri . 'runtime.js',
+                [],
+                filemtime($asset_root . 'runtime.js')
+            );
         }
 
-        if ( $deps_override !== [] ) {
-            $scripts    = \wp_scripts();
-            $registered = $scripts->registered[ $handle ] ?? null;
-            if ( $registered === null ) {
-                return;
+        foreach ($asset_files as $asset_file) {
+            $asset_script = require($asset_file);
+
+            $asset_filename = basename($asset_file);
+
+            $asset_slug_parts = explode('.asset.php', $asset_filename);
+            $asset_slug = array_shift($asset_slug_parts);
+
+            $asset_handle = sprintf('wordpress-plugin-boilerplate/%s', $asset_slug);
+
+            $stylesheet_path = $asset_root . $asset_slug . '.css';
+            $stylesheet_uri = $asset_uri . $asset_slug . '.css';
+
+            $javascript_path = $asset_root . $asset_slug . '.js';
+            $javascript_uri = $asset_uri . $asset_slug . '.js';
+
+            if (true === is_readable($stylesheet_path)) {
+                $style_dependencies = [];
+
+                \wp_register_style(
+                    $asset_handle,
+                    $stylesheet_uri,
+                    [],
+                    $asset_script['version']
+                );
             }
 
-            $src = isset( $registered->src ) ? $registered->src : '';
-            $ver = isset( $registered->ver ) ? $registered->ver : WP_PLUGIN_BOILERPLATE_VERSION;
-            if ( $src === '' ) {
-                return;
+            if (true === is_readable($javascript_path)) {
+                \wp_register_script(
+                    $asset_handle,
+                    $javascript_uri,
+                    $asset_script['dependencies'],
+                    $asset_script['version']
+                );
             }
+        }
+    }
+    /**
+     * Enqueue script.
+     *
+     * @param string $handle
+     * @param string $src
+     * @param string[] $dependencies
+     * @param string|bool|null $version
+     * @param bool $in_footer
+     *
+     * @return void
+     */
+    public static function enqueueScript(
+        string $handle,
+        string $src = '',
+        array  $dependencies = [],
+               $version = false,
+        bool   $in_footer = true
+    )
+    {
+        $localizes = [];
 
-            \wp_deregister_script( $handle );
-            \wp_register_script( $handle, $src, $deps_override, $ver, $in_footer );
+        switch ($handle) {
+            case 'wordpress-plugin-boilerplate/main':
+                $localizes[] = [
+                    'object_name' => 'WordPressPluginBoilerplate',
+                    'value' => [
+                        'ajaxUrl' => \admin_url('admin-ajax.php'),
+                        'nonce' => \wp_create_nonce('wp_plugin_boilerplate_nonce'),
+                    ],
+                ];
+                break;
         }
 
-        \wp_enqueue_script( $handle );
+        \wp_enqueue_script($handle, $src, $dependencies, $version, $in_footer);
+
+        if (0 < count($localizes)) {
+            foreach ($localizes as $localize) {
+                $object_name = $localize['object_name'] ?? '';
+                $local_params = true === isset($localize['value']) && true === is_array($localize['value']) ?
+                    $localize['value'] :
+                    [];
+
+                \wp_localize_script(
+                    $handle,
+                    $object_name,
+                    $local_params
+                );
+            }
+        }
     }
 
     /**
-     * Helper: enqueue a registered style by base filename (without extension).
+     * Enqueue style.
      *
-     * @param string $base Base filename without extension (e.g. 'index').
-     * @param array<string> $deps_override Optional dependency override.
-     * @param string $media Media attribute value.
-     */
-    public function enqueue_style( string $base, array $deps_override = [], string $media = 'all' ): void {
-        $handle = $this->style_handles[ $base ] ?? null;
-
-        if ( $handle === null ) {
-            // Attempt late registration if file was added after init.
-            $this->register_assets();
-            $handle = $this->style_handles[ $base ] ?? null;
-            if ( $handle === null ) {
-                return;
-            }
-        }
-
-        if ( $deps_override !== [] ) {
-            $styles     = \wp_styles();
-            $registered = $styles->registered[ $handle ] ?? null;
-            if ( $registered === null ) {
-                return;
-            }
-
-            $src = isset( $registered->src ) ? $registered->src : '';
-            $ver = isset( $registered->ver ) ? $registered->ver : WP_PLUGIN_BOILERPLATE_VERSION;
-            if ( $src === '' ) {
-                return;
-            }
-
-            \wp_deregister_style( $handle );
-            \wp_register_style( $handle, $src, $deps_override, $ver, $media );
-        }
-
-        \wp_enqueue_style( $handle );
-    }
-
-    /**
-     * Build a unique handle for the asset.
+     * @param string $handle
+     * @param string $src
+     * @param string[] $dependencies
+     * @param string|bool|null $version
+     * @param string $media
      *
-     * @param string $base Base filename without extension.
-     * @param string $type 'script'|'style'
-     * @return string
+     * @return void
      */
-    private function build_handle( string $base, string $type ): string {
-        $suffix = $type === 'script' ? 'js' : 'css';
-        return 'wordpress-plugin-boilerplate-' . $base . '-' . $suffix;
-    }
-
-    /**
-     * Return [deps, ver] from a WP Scripts .asset.php file if available.
-     *
-     * @param string $build_dir Absolute path to build directory with trailing slash.
-     * @param string $base Base filename without extension.
-     * @return array{0: array<int,string>, 1: ?string}
-     */
-    private function get_asset_meta( string $build_dir, string $base ): array {
-        $asset_file = $build_dir . $base . '.asset.php';
-        if ( ! file_exists( $asset_file ) ) {
-            return [ [], null ];
-        }
-
-        $data = require $asset_file;
-
-        if ( ! is_array( $data ) ) {
-            return [ [], null ];
-        }
-
-        $deps = ( isset( $data['dependencies'] ) && is_array( $data['dependencies'] ) ) ? $data['dependencies'] : [];
-        $ver  = ( isset( $data['version'] ) && ( is_string( $data['version'] ) || is_int( $data['version'] ) ) ) ? (string) $data['version'] : null;
-
-        return [ $deps, $ver ];
+    public static function enqueueStyle($handle, string $src = '', $dependencies = [], $version = false, $media = 'all')
+    {
+        \wp_enqueue_style($handle, $src, $dependencies, $version, $media);
     }
 }
