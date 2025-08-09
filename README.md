@@ -51,12 +51,16 @@ The boilerplate follows a modular architecture with clear separation of concerns
 
 ```
 wordpress-plugin-boilerplate/
-├── assets/                 # Frontend assets (CSS, JS, SCSS)
+├── build/                  # Built assets (generated)
 ├── docs/                  # Comprehensive documentation
-├── src/                   # PHP source code
+├── src/                   # Source code (PHP, JS, SCSS)
 │   ├── Admin/            # Admin functionality
 │   ├── Api/              # REST API endpoints
-│   └── Frontend/         # Frontend functionality
+│   ├── Frontend/         # Frontend functionality
+│   ├── js/               # JavaScript source files
+│   ├── scss/             # SCSS source files
+│   ├── index.js          # JavaScript entry point
+│   └── index.scss        # SCSS entry point
 ├── tests/                 # PHPUnit tests
 ├── .wp-env.json          # WordPress development environment
 ├── composer.json         # PHP dependencies

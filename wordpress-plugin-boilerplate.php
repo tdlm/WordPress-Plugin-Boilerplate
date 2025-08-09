@@ -44,8 +44,8 @@ add_action( 'plugins_loaded', function() {
         return;
     }
 
-    // Initialize the main plugin class
-    new \WordPressPluginBoilerplate\Plugin();
+    // Initialize the main plugin class using the singleton pattern
+    \WordPressPluginBoilerplate\Plugin::load();
 } );
 
 // Activation hook

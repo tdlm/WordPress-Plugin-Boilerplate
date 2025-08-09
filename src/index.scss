@@ -1,0 +1,11 @@
+/**
+ * WordPress Plugin Boilerplate - Main Styles Entry Point
+ *
+ * @package WordPressPluginBoilerplate
+ */
+
+// Import frontend styles
+@import './scss/frontend.scss';
+
+// Import admin styles
+@import './scss/admin.scss';

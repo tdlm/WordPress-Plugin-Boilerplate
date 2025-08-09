@@ -10,15 +10,16 @@ The WordPress Plugin Boilerplate is designed to provide a solid foundation for b
 
 ```
 wordpress-plugin-boilerplate/
-├── assets/                 # Frontend assets (CSS, JS, images)
-│   ├── css/               # Compiled CSS files
-│   ├── js/                # JavaScript files
-│   └── scss/              # SCSS source files
+├── build/                  # Built assets (generated)
 ├── docs/                  # Documentation
-├── src/                   # PHP source code
+├── src/                   # Source code (PHP, JS, SCSS)
 │   ├── Admin/            # Admin functionality
 │   ├── Api/              # REST API endpoints
-│   └── Frontend/         # Frontend functionality
+│   ├── Frontend/         # Frontend functionality
+│   ├── js/               # JavaScript source files
+│   ├── scss/             # SCSS source files
+│   ├── index.js          # JavaScript entry point
+│   └── index.scss        # SCSS entry point
 ├── tests/                 # PHPUnit tests
 ├── vendor/                # Composer dependencies
 ├── .wp-env.json          # WordPress development environment config
@@ -72,21 +73,21 @@ Contains REST API functionality:
 - Data validation and sanitization
 - API response formatting
 
-### Assets (`assets/`)
+### Assets (`src/` and `build/`)
 
-The assets directory contains all frontend resources:
+The source assets are in the `src/` directory and built assets are in the `build/` directory:
 
-#### CSS Files (`assets/css/`)
-- `frontend.css` - Styles for public-facing pages
-- `admin.css` - Styles for WordPress admin pages
+#### Source Files (`src/`)
+- `js/frontend.js` - Frontend JavaScript functionality
+- `js/admin.js` - Admin JavaScript functionality
+- `scss/frontend.scss` - SCSS source for frontend styles
+- `scss/admin.scss` - SCSS source for admin styles
+- `index.js` - JavaScript entry point
+- `index.scss` - SCSS entry point
 
-#### JavaScript Files (`assets/js/`)
-- `frontend.js` - Frontend JavaScript functionality
-- `admin.js` - Admin JavaScript functionality
-
-#### SCSS Files (`assets/scss/`)
-- `frontend.scss` - SCSS source for frontend styles
-- `admin.scss` - SCSS source for admin styles
+#### Built Files (`build/`)
+- `index.js` - Compiled JavaScript bundle
+- `index.css` - Compiled CSS bundle
 
 ### Configuration Files
 
@@ -119,7 +120,7 @@ Configures the local WordPress development environment:
 4. Access your plugin at `http://localhost:8888`
 
 ### Building Assets
-- `npm run build` - Build production assets
+- `npm run build` - Build production assets (JavaScript and CSS)
 - `npm run dev` - Start development mode with hot reloading
 - `npm run format` - Format code using WordPress standards
 - `npm run lint:js` - Lint JavaScript files
@@ -168,13 +169,13 @@ Configures the local WordPress development environment:
 4. Update documentation
 
 ### Styling
-- Modify SCSS files in `assets/scss/`
+- Modify SCSS files in `src/scss/`
 - Use the provided CSS classes and utilities
 - Follow the established design system
 - Ensure responsive design
 
 ### JavaScript
-- Extend the existing JavaScript objects
+- Extend the existing JavaScript objects in `src/js/`
 - Use the provided AJAX utilities
 - Follow WordPress JavaScript standards
 - Handle errors gracefully

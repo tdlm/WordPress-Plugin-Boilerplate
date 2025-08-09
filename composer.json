@@ -14,10 +14,6 @@
         "php": ">=8.2",
         "great-scott-plugins/wordpress-plugin": "^1.0.6"
     },
-    "require-dev": {
-        "wordpress/env": "^8.0",
-        "wordpress/scripts": "^27.0"
-    },
     "autoload": {
         "psr-4": {
             "WordPressPluginBoilerplate\\": "src/"
@@ -40,5 +36,11 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Great-Scott-Plugins/WordPress-Plugin.git"
+        }
+    ]
 }

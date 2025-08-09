@@ -12,18 +12,9 @@ use GreatScottPlugins\WordPressPlugin\Plugin as BasePlugin;
 class Plugin extends BasePlugin {
 
     /**
-     * Plugin constructor
-     */
-    public function __construct() {
-        parent::__construct();
-        
-        $this->init_hooks();
-    }
-
-    /**
      * Initialize WordPress hooks
      */
-    private function init_hooks(): void {
+    protected function init_hooks(): void {
         add_action( 'init', [ $this, 'init' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
@@ -62,7 +53,7 @@ class Plugin extends BasePlugin {
     public function enqueue_scripts(): void {
         wp_enqueue_script(
             'wordpress-plugin-boilerplate-frontend',
-            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'assets/js/frontend.js',
+            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'build/index.js',
             [ 'jquery' ],
             WP_PLUGIN_BOILERPLATE_VERSION,
             true
@@ -70,7 +61,7 @@ class Plugin extends BasePlugin {
 
         wp_enqueue_style(
             'wordpress-plugin-boilerplate-frontend',
-            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'assets/css/frontend.css',
+            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'build/index.css',
             [],
             WP_PLUGIN_BOILERPLATE_VERSION
         );
@@ -92,7 +83,7 @@ class Plugin extends BasePlugin {
     public function enqueue_admin_scripts(): void {
         wp_enqueue_script(
             'wordpress-plugin-boilerplate-admin',
-            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'assets/js/admin.js',
+            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'build/index.js',
             [ 'jquery' ],
             WP_PLUGIN_BOILERPLATE_VERSION,
             true
@@ -100,7 +91,7 @@ class Plugin extends BasePlugin {
 
         wp_enqueue_style(
             'wordpress-plugin-boilerplate-admin',
-            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'assets/css/admin.css',
+            WP_PLUGIN_BOILERPLATE_PLUGIN_URL . 'build/index.css',
             [],
             WP_PLUGIN_BOILERPLATE_VERSION
         );

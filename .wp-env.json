@@ -1,10 +1,7 @@
 {
-    "core": "WordPress/WordPress#trunk",
+    "core": "WordPress/WordPress#master",
     "plugins": [
         "."
-    ],
-    "themes": [
-        "https://downloads.wordpress.org/theme/twentytwentyfour.latest-stable.zip"
     ],
     "port": 8888,
     "testsPort": 8889,
